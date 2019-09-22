@@ -14,13 +14,11 @@ double summary(double x, double epsilon) {
 		// std::cout << "i=" << i << "   sum= " << sum << "   current=" << current << std::endl;
 		i++;
 	} while (fabs(current) >= epsilon);
-	std::cout << "sum = " << sum << std::endl << "eps = " << epsilon << std::endl; // delete
 	return sum;
 }
 
 double func(double x) {
 	double y = (1.0 / pow((1 + x), 3.0 / 2.0));
-	std::cout << "func = " << y << std::endl; // delete
 	return y;
 }
 
@@ -30,10 +28,12 @@ bool contester() { // delete
 	double e = 0.01;
 	double x = 0.1;
 	for (; x < 1.0; x += 0.1) {
-		for (; e > 0.00001; e *= 0.1) {
+		for (; e > 0.000001; e *= 0.1) {
 			std::cout << x << "   " << e << std::endl;
 			y = func(x);
+			std::cout << "func = " << y << std::endl; // delete
 			sum = summary(x, e);
+			std::cout << "sum = " << sum << std::endl; // delete
 			if (fabs(y - sum) > e)
 			{
 				fl = false;
