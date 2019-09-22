@@ -28,6 +28,7 @@ bool contester() { // delete
 	double e = 0.01;
 	double x = 0.1;
 	while (x < 1.0) {
+		e = 0.01;
 		while (e > 0.000001) {
 			std::cout << x << "   " << e << std::endl;
 			y = func(x);
