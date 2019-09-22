@@ -27,14 +27,19 @@ double func(double x) {
 bool contester() { // delete
 	double y, sum;
 	bool fl = true;
-	int e = 0.01;
-	for (double x = 0.1; x < 1.0; x += 0.1) {
+	double e = 0.01;
+	double x = 0.1;
+	for (; x < 1.0; x += 0.1) {
 		for (; e > 0.00001; e *= 0.1) {
 			std::cout << x << "   " << e << std::endl;
 			y = func(x);
 			sum = summary(x, e);
 			if (fabs(y - sum) > e)
+			{
 				fl = false;
+				std::cout << "test mimo" << std::endl;
+			}
+				
 		}
 	}
 	return fl;
