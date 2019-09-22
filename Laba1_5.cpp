@@ -9,7 +9,7 @@ double summary(double x, double epsilon) {
 		denominator *= (2.0 * i);
 		sign = -sign;
 		power *= x;
-		current *= sign * power * numerator / denominator;
+		current *= (sign * power * numerator / denominator);
 		sum += current;
 		// std::cout << "i=" << i << "   sum= " << sum << "   current=" << current << std::endl;
 		i++;
