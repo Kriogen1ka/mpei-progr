@@ -9,7 +9,7 @@ double summary(double x, double epsilon) {
 		denominator *= (2.0 * i);
 		sign = -sign;
 		power *= x;
-		current *= (sign * power * numerator / denominator);
+		current = (sign * power * numerator / denominator);
 		sum += current;
 		// std::cout << "i=" << i << "   sum= " << sum << "   current=" << current << std::endl;
 		i++;
@@ -27,8 +27,8 @@ bool contester() { // delete
 	bool fl = true;
 	double e = 0.01;
 	double x = 0.1;
-	for (; x < 1.0; x += 0.1) {
-		for (; e > 0.000001; e *= 0.1) {
+	while (x < 1.0) {
+		while (e > 0.000001) {
 			std::cout << x << "   " << e << std::endl;
 			y = func(x);
 			std::cout << "func = " << y << std::endl; // delete
@@ -39,8 +39,9 @@ bool contester() { // delete
 				fl = false;
 				std::cout << "test mimo" << std::endl;
 			}
-				
+			e *= 0.1;
 		}
+		x += 0.1;
 	}
 	return fl;
 }
