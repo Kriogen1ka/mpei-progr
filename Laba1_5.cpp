@@ -1,6 +1,21 @@
 #include <iostream>
-#include <conio.h>
 #include <math.h>
+
+double summary(double x, double epsilon) {
+	double sum = 1, current = 1, numerator = 1, denominator = 1, sign = 1, power = 1;
+	int i = 1;
+	do {
+		numerator *= (2.0 * i + 1.0);
+		denominator *= (2.0 * i);
+		sign = -sign;
+		power *= x;
+		current *= sign * power * numerator / denominator;
+		sum += current;
+		// std::cout << "i=" << i << "   sum= " << sum << "   current=" << current << std::endl;
+		i++;
+	} while (fabs(current) >= epsilon);
+	return sum;
+}
 
 int main()
 {
@@ -22,24 +37,10 @@ int main()
 		std::cout << "Input X as function argument : ";
 		std::cin >> x;
 		// Calculation
-		double sum, current, numerator = 3, denominator = 2, sign = -1, power;
-		power = x;
-		sum = 1 - 2.0 * x / 3.0;
-		current = 1;
-		int i = 2;
-		do {
-			numerator *= (2.0 * i + 1.0);
-			denominator *= (2.0 * i);
-			sign = -sign;
-			power *= x;
-			current *= sign * power * numerator / denominator;
-			sum += current;
-			std::cout << "i=" << i << "   sum= " << sum << "   current=" << current << std::endl;
-			i++;
-		} while (fabs(current) >= epsilon);
+		double sum = summary(x, epsilon);
 		double y;
-		y = 1.0 / pow((1 + x), 3.0 / 2.0);
-		std::cout << "y = " << y << "   eps = " << epsilon << std::endl;
+		y = (1.0 / pow((1 + x), 3.0 / 2.0));
+		std::cout << "sum = " << sum << "   y = " << y << "   eps = " << epsilon << std::endl;
 		// Program Repeat
 		char exit;
 		std::cout << "Type 'Y' to redo programm or 'N' to exit programm: ";
@@ -49,6 +50,5 @@ int main()
 		else
 			std::cout << "\n";
 	} while (fl);
-	system("pause");
 	return 0;
 }
